@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 
 import { userService } from 'services';
 
+import { Dashboard } from './dashboard';
+
+
 export default Home;
 
 function Home() {
@@ -17,6 +20,8 @@ function Home() {
             <div className="card-body">
                 <h6>Users from secure api end point</h6>
             </div>
+
+            <Dashboard></Dashboard>
         </div>
     );
 }

@@ -20,6 +20,8 @@ export const userService = {
     getAll,
     // Social Logins
     twitterLogin,
+    // NocoDB Calls
+    query_db,
 };
 
 function login(email, password) {
@@ -211,6 +213,21 @@ function twitterLogin(accessToken) {
     try {
         return fetchWrapper.post(`${process.env.SHELIAK_URL}/graphql`, {query: query, variables: variables})
     } catch (error) {
+        console.log(error);
+    }
+}
+
+// NocoDB Queries
+function query_db(url, body){
+    try{
+        return fetchWrapper.post_db(url, body)
+        .then(data => {
+            // console.log(data);
+
+            return data;
+        });
+    }
+    catch (error){
         console.log(error);
     }
 }

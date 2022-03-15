@@ -3,6 +3,7 @@ import { userService } from 'services';
 export const fetchWrapper = {
     get,
     post,
+    post_db,
     put,
     delete: _delete
 };
@@ -21,6 +22,19 @@ function post(url, body) {
         headers: { 'Content-Type': 'application/json', ...authHeader(url) },
         credentials: 'include',
         body: JSON.stringify(body)
+    };
+    return fetch(url, requestOptions).then(handleResponse);
+}
+
+// Temporary function - will integrate into post function later
+function post_db(url, body){
+    // Temporary login credentials, will heavily modify later
+    const requestOptions = {
+        method: 'POST',
+        headers: {  'Content-Type': 'application/json', 
+                    'xc-auth': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJrb25nQGx5cmlkLmlvIiwiZmlyc3RuYW1lIjpudWxsLCJsYXN0bmFtZSI6bnVsbCwiaWQiOjEsInJvbGVzIjoidXNlciIsImlhdCI6MTY0NjE3NjY2NH0.v1MQUOaFC0mUW_TVFByLy9JwknUJe8dkBNJzjtQTw-8'
+        },
+        body: JSON.stringify( { query: body} )
     };
     return fetch(url, requestOptions).then(handleResponse);
 }
